@@ -25,3 +25,4 @@ class UserStory(BaseModel):
     business_value = IntegerField()
     estimation = FloatField()
     status = CharField()
+

@@ -9,14 +9,14 @@
             <fieldset style="width:500px">
                 <h2>User Story Manager - Add new Story</h2>
                 <p>Story title <br/> </p>
-                <textarea rows="1" cols="80" name="title"></textarea>
+                <textarea rows="1" cols="80" name="title" required></textarea>
                 <p> User story <br/></p>
-                <textarea rows="8" cols="80" name="story"></textarea>
+                <textarea rows="8" cols="80" name="story" required></textarea>
                 <p>Acceptance criteria <br></p>
-                <textarea rows="8" cols="80" name="criteria"></textarea>
+                <textarea rows="8" cols="80" name="criteria" required></textarea>
                 <p>Business value</p>
                 <input type="number" name="value" value="100" min="100" max="1500" step="100">
-                <p>Estimation</p>
+                <p>Estimation (h)</p>
                 <input type="number" name="estimation" value="0.5" min="0.5" max="40" step="0.5">
                 <p>Status</p>
                 <select name="status">
@@ -26,7 +26,7 @@
                     <option>Review</option>
                     <option>Done</option>
                 </select>
-                <input type="submit" value="submit">
+                <input type="submit" value="create">
             </fieldset>
         </form>
     </body>

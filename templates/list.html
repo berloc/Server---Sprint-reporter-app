@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Story Manager - Add new Story</title>
+    </head>
+    <style>
+        table, th, td {border: 1px solid black}
+    </style>
+    <body>
+        <form method="post">
+        <div>
+            <ul>
+                <table style="width:100%">
+                    <tr>
+                        <th>Story title</th>
+                        <th>User story</th>
+                        <th>Acceptance criteria</th>
+                        <th>Business value</th>
+                        <th>Estimation time</th>
+                        <th>Status</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+                    </tr>
+                    {% for row in user_stories %}
+                    <tr>
+                        <td>{{row.story_title}}</td>
+                        <td>{{row.user_story}}</td>
+                        <td>{{row.acceptance_criteria}}</td>
+                        <td>{{row.business_value}}</td>
+                        <td>{{row.estimation}}</td>
+                        <td>{{row.status}}</td>
+                        <td><a href="{{site}}/{{row.id}}">Delete</a></td>
+                        <td><a href="{{site2}}/{{row.id}}">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </ul>
+        </div>
+        </form>
+    </body>
+</html>
