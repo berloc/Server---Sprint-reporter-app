@@ -1,25 +1,30 @@
-from model import *
 from flask import *
+from build import *
 
 app = Flask(__name__)
 
 
-@app.before_request
-def before_request():
-    ConnectDatabase.db.connect()
+# @app.before_request
+# def before_request():
+#     ConnectDatabase.db.connect()
+#
+#
+# @app.after_request
+# def after_request(response):
+#     ConnectDatabase.db.close()
+#     return response
 
+@app.route('/')
+def default_page():
+    return render_template('index.html')
 
-@app.after_request
-def after_request(response):
-    ConnectDatabase.db.close()
-    return response
 
 
 # add new data to the database
 @app.route('/story', methods=['GET', 'POST'])
 def add_story():
     if request.method == 'GET':
-        return render_template('form.html')
+        return render_template('form.html', action="Create")
     elif request.method == 'POST':
         columns = ['title', 'story', 'criteria', 'value', 'estimation', 'status']
         data = [request.form[element] for element in columns]
@@ -31,7 +36,7 @@ def add_story():
                     estimation=data[4],
                     status=data[5])
         new_story.save()
-        return redirect(url_for('add_story'))
+        return redirect(url_for('default_page'))
 
 
 @app.route('/list')
@@ -43,7 +48,7 @@ def list_story():
 @app.route('/story/<story_id>', methods=['GET'])
 def show_stories(story_id):
     story = UserStory.get(UserStory.id == story_id)
-    return render_template("form.html", user_story=story)
+    return render_template("form.html", user_story=story, action="Update")
 
 
 @app.route('/story/<story_id>', methods=['POST'])
@@ -56,14 +61,14 @@ def edit_story(story_id):
                              status=request.form['status']).\
                              where(UserStory.id == story_id)
     story.execute()
-    return 'Updated the database'
+    return redirect(url_for('default_page'))
 
 
 @app.route('/delete/<story_id>', methods=['GET'])
 def delete_story(story_id):
     story = UserStory.get(UserStory.id == story_id)
     story.delete_instance()
-    return redirect('http://localhost:5000/list')
+    return redirect(url_for('list_story'))
 
 
 app.run(debug=True)
