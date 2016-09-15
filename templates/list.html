@@ -1,42 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>User Story Manager - Add new Story</title>
-    </head>
-    <style>
-        table, th, td {border: 1px solid black}
-    </style>
-    <body>
-        <form method="post">
-        <div>
-            <ul>
-                <table style="width:100%">
-                    <tr>
-                        <th>Story title</th>
-                        <th>User story</th>
-                        <th>Acceptance criteria</th>
-                        <th>Business value</th>
-                        <th>Estimation time</th>
-                        <th>Status</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
-                    </tr>
-                    {% for row in user_stories %}
-                    <tr>
-                        <td>{{row.story_title}}</td>
-                        <td>{{row.user_story}}</td>
-                        <td>{{row.acceptance_criteria}}</td>
-                        <td>{{row.business_value}}</td>
-                        <td>{{row.estimation}}</td>
-                        <td>{{row.status}}</td>
-                        <td><a href="{{site}}/{{row.id}}">Delete</a></td>
-                        <td><a href="{{site2}}/{{row.id}}">Edit</a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </ul>
-        </div>
-        </form>
-    </body>
-</html>
+{% extends "index.html" %}
+{% block body %}
+<body>
+    <form method="post">
+    <div>
+        <ul>
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th class="text-center">Story title</th>
+                    <th class="text-center">User story</th>
+                    <th class="text-center">Acceptance criteria</th>
+                    <th class="text-center">Business value</th>
+                    <th class="text-center">Estimation time</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Delete</th>
+                    <th class="text-center">Edit</th>
+                </tr>
+                {% for row in user_stories %}
+                <tr>
+                    <td class="text-center">{{row.story_title}}</td>
+                    <td class="text-center">{{row.user_story}}</td>
+                    <td class="text-center">{{row.acceptance_criteria}}</td>
+                    <td class="text-center">{{row.business_value}}</td>
+                    <td class="text-center">{{row.estimation}}</td>
+                    <td class="text-center">{{row.status}}</td>
+                    <td class="text-center"><a data-toggle="tooltip" title="Achtung! Delete" class="btn-warning btn-sm" href="{{site}}/{{row.id}}">Delete</a></td>
+                    <td class="text-center"><a date-toogle="tooltip" title="Edit" class="btn-primary btn-sm" href="{{site2}}/{{row.id}} ">Edit</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </ul>
+    </div>
+    </form>
+</body>
+{% endblock %}
+

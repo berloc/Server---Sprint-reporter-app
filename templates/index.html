@@ -1,16 +1,32 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
         <title>User Story Manager</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h2> User story manager
-        <form action="http://localhost:5000/story">
-            <input type="submit" value="Create new story" />
-        </form>
-        <form action="http://localhost:5000/list">
-            <input type="submit" value="List stories" />
-        </form>
+        <nav>
+            <div class="navbar navbar-inverse navbar-fixed top">
+                <div class="navbar-header">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                             <a class="navbar-brand">User story manager</a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="http://localhost:5000">Home</a></li>
+                            <li><a href="http://localhost:5000/story">Create new story</a></li>
+                            <li><a href="http://localhost:5000/list">List stories</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {% block body %}{% endblock %}
     </body>
 </html>

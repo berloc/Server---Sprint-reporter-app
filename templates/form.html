@@ -1,3 +1,6 @@
+{% extends "index.html" %}
+{% block body %}
+
 {% set title = "" %}
 {% set story = "" %}
 {% set criteria = "" %}
@@ -11,37 +14,25 @@
     {% set estimation =user_story.estimation %}
 {% endif %}
 
+<div class="container">
+    <form method="post">
+        <fieldset style="width:500px">
+            <h2>User Story Manager - {{action}}</h2>
+            Story title<textarea rows="1" cols="80" name="title" required>{{ title }}</textarea>
+            User story<textarea rows="8" cols="80" name="story" required>{{ story }}</textarea>
+            Acceptance criteria<textarea rows="8" cols="80" name="criteria" required>{{ criteria }}</textarea>
+            Business value <input type="number" name="value" value={{value}} min="100" max="1500" step="100"><br><br>
+            Estimation (h) <input type="number" name="estimation" value={{estimation}} min="0.5" max="40" step="0.5"><br><br>
+            Status <select name="status">
+                <option>Planning</option>
+                <option>To Do</option>
+                <option>In Progress</option>
+                <option>Review</option>
+                <option>Done</option>
+            </select>
+            <input type="submit" class="btn-primary" value={{ action }}>
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>User Story Manager - {{ action }}</title>
-    </head>
-    <body>
-        <form method="post">
-            <fieldset style="width:500px">
-                <h2>User Story Manager - {{action}}</h2>
-                <p>Story title <br/> </p>
-                <textarea rows="1" cols="80" name="title" required>{{ title }}</textarea>
-                <p> User story <br/></p>
-                <textarea rows="8" cols="80" name="story" required>{{ story }}</textarea>
-                <p>Acceptance criteria <br></p>
-                <textarea rows="8" cols="80" name="criteria" required>{{ criteria }}</textarea>
-                <p>Business value</p>
-                <input type="number" name="value" value={{value}} min="100" max="1500" step="100">
-                <p>Estimation (h)</p>
-                <input type="number" name="estimation" value={{estimation}} min="0.5" max="40" step="0.5">
-                <p>Status</p>
-                <select name="status">
-                    <option>Planning</option>
-                    <option>To Do</option>
-                    <option>In Progress</option>
-                    <option>Review</option>
-                    <option>Done</option>
-                </select>
-                <input type="submit" value={{ action }}>
-            </fieldset>
-        </form>
-    </body>
-</html>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}
