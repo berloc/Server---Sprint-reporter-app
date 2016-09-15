@@ -19,7 +19,6 @@ def default_page():
     return render_template('index.html')
 
 
-
 # add new data to the database
 @app.route('/story', methods=['GET', 'POST'])
 def add_story():
